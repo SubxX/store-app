@@ -1,0 +1,7 @@
+.darkmode-state{
+  transition-property:left;
+  @apply duration-300 ease-in-out;
+}
+.dark-toggle{
+  left:calc(100% - 20px);
+}

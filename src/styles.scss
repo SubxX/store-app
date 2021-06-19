@@ -2,3 +2,29 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
+
+.primary-text{
+  @apply text-light-active dark:text-white;
+}
+
+.secondary-text{
+  @apply text-light-inactive dark:text-dark-active;
+}
+
+.btn{
+  @apply bg-light-btn text-light-active dark:bg-dark-btn dark:text-white;
+}
+
+
+
+.nav-menu li a{
+  transition: color;
+  @apply text-light-inactive
+  hover:text-light-active
+  duration-300
+  ease-in-out
+  dark:hover:text-white;
+  &.active{
+    @apply text-light-active dark:text-white;
+  }
+}
