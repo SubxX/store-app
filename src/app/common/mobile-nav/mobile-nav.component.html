@@ -1,0 +1,53 @@
+<div
+  class="p-4 fixed bottom-0 left-0 w-full bg-white border-t-4 border-blue sm:hidden dark:bg-dark-lighter dark:border-purple rounded-t-2xl">
+  <ul class="items-center grid grid-cols-4 gap-4 nav-menu">
+
+    <li>
+      <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"></path>
+        </svg>
+        <span class="text-sm pt-1">Products</span>
+      </a>
+    </li>
+
+    <li>
+      <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/news']"
+        routerLinkActive="active">
+        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+            clip-rule="evenodd"></path>
+          <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
+        </svg>
+        <span class="text-sm pt-1">News</span>
+      </a>
+    </li>
+
+    <li>
+      <a class="cursor-pointer flex items-center justify-center flex-col">
+        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <span class="text-sm pt-1">Awards</span>
+      </a>
+    </li>
+
+    <li>
+      <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/menu']"
+        routerLinkActive="active">
+        <svg class="w-5 h-5" viewBox="0 0 16 16" fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+        <span class="text-sm pt-1">Menu</span>
+      </a>
+    </li>
+
+  </ul>
+</div>

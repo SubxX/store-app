@@ -1,10 +1,21 @@
-<div class="menu-holder w-56 bg-white rounded-lg p-2 shadow-light dark:bg-dark-lighter">
-  <ul class="space-y-2">
+<div class="max-w-md mx-auto px-4 pt-6 pb-10">
+
+
+  <div class="primary-text mb-10 flex items-center">
+    <a class="pt-1 cursor-pointer">
+      <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd"
+          d="M15.28 5.22a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 000 1.06l6.25 6.25a.75.75 0 101.06-1.06L9.56 12l5.72-5.72a.75.75 0 000-1.06z">
+        </path>
+      </svg>
+    </a>
+    <h1 class="text-2xl font-medium ml-4">Menu</h1>
+  </div>
+
+  <ul class="space-y-2 select-none">
 
     <li>
-      <a class="flex rounded-lg items-center cursor-pointer p-3 primary-text hover:bg-light dark:hover:bg-btn-dark"
-        [routerLink]="['/profile']" [routerLinkActive]="['bg-light','dark:bg-btn-dark','pointer-events-none']"
-        (click)="closeMenuHandler()">
+      <a class="flex rounded-lg items-center cursor-pointer py-2 primary-text">
         <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
         </svg>
@@ -13,7 +24,7 @@
     </li>
 
     <li>
-      <a class="flex rounded-lg items-center cursor-pointer p-3 primary-text hover:bg-light dark:hover:bg-btn-dark">
+      <a class="flex rounded-lg items-center cursor-pointer py-4 primary-text">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
           <path d="M0 0h24v24H0z" fill="none"></path>
           <path
@@ -25,11 +36,11 @@
     </li>
 
     <li>
-      <hr class="border-light dark:border-dark">
+      <hr class="border-extra-light dark:border-dark">
     </li>
 
     <li>
-      <a class="flex rounded-lg items-center p-3 primary-text">
+      <a class="flex rounded-lg items-center py-3 primary-text">
         <svg class="w-5 h-5" viewBox="0 0 16 16" fill="currentColor">
           <path fill-rule="evenodd"
             d="M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z">
@@ -47,11 +58,11 @@
     </li>
 
     <li>
-      <hr class="border-light dark:border-dark">
+      <hr class="border-extra-light dark:border-dark">
     </li>
 
     <li>
-      <a class="flex rounded-lg items-center cursor-pointer text-warning p-3 hover:bg-warning">
+      <a class="flex rounded-lg items-center cursor-pointer text-warning py-2">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
           <path d="M0 0h24v24H0z" fill="none"></path>
           <path
@@ -63,4 +74,7 @@
     </li>
 
   </ul>
+
+  <p class="text-center mt-10 primary-text text-sm">© 2020 - All Rights Reserved</p>
+
 </div>

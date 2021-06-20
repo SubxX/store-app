@@ -1,30 +1,37 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 /* You can add global styles to this file, and also import other style files */
-
-.primary-text{
-  @apply text-light-active dark:text-white;
+a,
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.secondary-text{
-  @apply text-light-inactive dark:text-dark-active;
+.primary-text {
+  @apply text-primary dark:text-white;
 }
 
-.btn{
-  @apply bg-light-btn text-light-active dark:bg-dark-btn dark:text-white;
+.btn {
+  @apply bg-btn-light text-primary dark:bg-btn-dark dark:text-white;
 }
 
-
-
-.nav-menu li a{
+.nav-menu li a {
   transition: color;
-  @apply text-light-inactive
-  hover:text-light-active
+  @apply text-inactive
   duration-300
-  ease-in-out
-  dark:hover:text-white;
-  &.active{
-    @apply text-light-active dark:text-white;
+  ease-in-out;
+  @media (hover: hover) {
+    @apply hover:text-primary dark:hover:text-white;
   }
+  &.active {
+    @apply text-primary dark:text-white;
+  }
+}
+
+.darkmode-state {
+  transition-property: left;
+  @apply duration-300 ease-in-out;
+}
+.dark-toggle {
+  left: calc(100% - 20px);
 }

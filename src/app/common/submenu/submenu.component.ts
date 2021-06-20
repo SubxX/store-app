@@ -1,4 +1,5 @@
-import { Component, OnInit,EventEmitter,Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
   selector: 'app-submenu',
@@ -6,21 +7,23 @@ import { Component, OnInit,EventEmitter,Output, Input } from '@angular/core';
   styleUrls: ['./submenu.component.scss']
 })
 export class SubmenuComponent implements OnInit {
+  isDark: boolean = false;
   @Output() closeMenu = new EventEmitter<boolean>();
-  @Output() switchTheme = new EventEmitter<boolean>();
-  @Input('isDark') isDark!:boolean;
 
-  constructor() { }
+  constructor(private main: MainService) {
+    this.isDark = this.main.darkMode;
+  }
 
   ngOnInit(): void {
   }
 
-  closeMenuHandler():void{
-    this.closeMenu.emit();
+  toggleDarkMode(): void {
+    this.main.toggleDarkMode();
+    this.isDark = this.main.darkMode;
   }
 
-  darkModeHandler():void{
-    this.switchTheme.emit();
+  closeMenuHandler(): void {
+    this.closeMenu.emit();
   }
 
 }

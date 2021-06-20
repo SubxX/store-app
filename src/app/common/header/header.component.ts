@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import {Animations} from '../../animations/animations';
+import { Component, OnInit } from '@angular/core';
+import { Animations } from '../../animations/animations';
 
 @Component({
   selector: 'app-header',
@@ -7,29 +7,13 @@ import {Animations} from '../../animations/animations';
   styleUrls: ['./header.component.scss'],
   animations: [Animations.menuAnimation],
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit {
   darkMode: boolean = false;
   subMenuOpen: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-    this.changeTheme(localStorage.theme ? true : false);
-  }
-
-  toggleDarkMode(): void {
-    this.darkMode ? localStorage.removeItem('theme') : localStorage.setItem('theme', 'dark');
-    this.changeTheme(!this.darkMode);
-  }
-
-  changeTheme(isDark: boolean): void {
-    this.darkMode = isDark;
-    this.darkMode ?
-      document.documentElement.classList.add('dark') :
-      document.documentElement.classList.remove('dark');
   }
 
 }
