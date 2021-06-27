@@ -14,6 +14,7 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.main.changeTheme(localStorage.theme ? true : false);
+    this.main.openAuthenticationPopup();
   }
 
 }

@@ -12,13 +12,13 @@ module.exports = {
   },
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
     textColor: {
       'primary': '#282B31',
       'secondary': '#5F5F6E',
       'inactive': '#A6ADB1',
       'warning': '#E24444',
       'white': '#fff',
+      'white-defused': '#ffffff45'
     },
     backgroundColor: {
       'light': '#EAEDF2',
@@ -29,18 +29,21 @@ module.exports = {
       'btn-dark': '#2D2D3A',
       'blue': '#1750FF',
       'white': '#fff',
-      'purple': '#4447E2',
+      'purple': '#3f51b5',
     },
     borderColor: {
+      'transparent': 'transparent',
       'blue': '#1750FF',
-      'purple': '#4447E2',
+      'purple': '#3f51b5',
       'light': '#EAEDF2',
       'dark': '#2D2D3A',
-      'extra-light': '#DDE1E8'
+      'extra-light': '#DDE1E8',
+      'warning': '#E24444'
     },
-
-    boxShadow: {
-      'light': '1px 0px 74px 4px rgb(56 50 124 / 8%)'
+    extend: {
+      boxShadow: {
+        'light': '1px 0px 74px 4px rgb(56 50 124 / 8%)'
+      }
     }
   },
   variants: {

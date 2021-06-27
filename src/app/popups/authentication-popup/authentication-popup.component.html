@@ -1,0 +1,91 @@
+<div class="primary-text overflow-hidden p-6">
+
+  <div class="flex justify-center items-center mb-4 bg-light rounded-xl p-4 dark:bg-dark">
+    <img src="assets/logo.png" width="30" height="30" />
+    <p class="ml-2 text-center text-xl font-medium uppercase">{{getTitle()}}</p>
+  </div>
+
+  <div class="relative" [@slideAnim]="triggerData" #mainholder>
+
+    <form (submit)="handleSignup($event)" id="signup-form" *ngIf="formShown==1" [formGroup]="signUpForm">
+
+      <div class="form-field" [class.invalid]="getControlError(signUpForm,'name')">
+        <label>Name</label>
+        <div class="relative">
+          <input type="text" placeholder="Enter fullname" formControlName="name" />
+        </div>
+      </div>
+
+      <div class="form-field mt-2" [class.invalid]="getControlError(signUpForm,'email')">
+        <label>Email</label>
+        <div class="relative">
+          <input type="text" placeholder="Enter email address" formControlName="email" />
+        </div>
+      </div>
+
+      <div class="form-field mt-2" [class.invalid]="getControlError(signUpForm,'password')">
+        <label>Password</label>
+        <div class="relative">
+          <input type="password" placeholder="Enter password" formControlName="password" #passio />
+          <button class="eye-toggle absolute top-2/4 right-4 h-5 w-5" (click)="togglePasswordVisibility(passio)">
+            <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
+              *ngIf="getInputType(passio)==='password'">visibility</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
+              *ngIf="getInputType(passio)==='text'">visibility_off</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <button class="w-full rounded-xl mt-5
+    py-3 font-medium bg-blue text-white
+    dark:bg-purple">SIGNUP</button>
+
+      <small class="block mt-5 text-inactive text-sm">Have an account?
+        <a class="primary-text underline cursor-pointer" (click)="changeState(2)">Signin</a>
+      </small>
+
+    </form>
+
+    <form (submit)="handleSignin($event)" id="signin-form" *ngIf="formShown==2" [formGroup]="signInForm">
+
+      <div class="form-field" [class.invalid]="getControlError(signInForm,'email')">
+        <label>Email</label>
+        <div class="relative">
+          <input type="text" placeholder="Enter email address" formControlName="email" />
+        </div>
+      </div>
+
+      <div class="form-field mt-2" [class.invalid]="getControlError(signInForm,'password')">
+        <label>Password</label>
+        <div class="relative">
+          <input type="password" placeholder="Enter password" formControlName="password" #passiologin />
+          <button class="eye-toggle absolute top-2/4 right-4 h-5 w-5" (click)="togglePasswordVisibility(passiologin)">
+            <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
+              *ngIf="getInputType(passiologin)==='password'">visibility</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
+              *ngIf="getInputType(passiologin)==='text'">visibility_off</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <button class="w-full rounded-xl mt-5
+    py-3 font-medium bg-blue text-white
+    dark:bg-purple">SIGNIN</button>
+
+      <small class="block mt-5 text-inactive text-sm">Dont have an account?
+        <a class="primary-text underline cursor-pointer" (click)="changeState(1)">Create</a>
+      </small>
+
+    </form>
+
+    <div class="test" *ngIf="formShown==3">
+      <p class="text-xl font-medium">Verify your email</p>
+      <p class="my-5 text-sm">Hi subham! use the link that we sent to your
+        email to verify your email address and start using
+        this store!</p>
+      <button class="btn p-3 w-full rounded-xl font-medium" (click)="changeState(2)">RESEND</button>
+    </div>
+
+  </div>
+
+</div>

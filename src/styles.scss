@@ -6,20 +6,22 @@ a,
 button {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+input,
+textarea {
+  @apply focus:outline-none focus:ring;
+}
 
 .primary-text {
   @apply text-primary dark:text-white;
 }
 
 .btn {
-  @apply bg-btn-light text-primary dark:bg-btn-dark dark:text-white;
+  @apply bg-btn-light text-primary dark:bg-btn-dark dark:text-white focus:outline-none focus:ring;
 }
 
 .nav-menu li a {
   transition: color;
-  @apply text-inactive
-  duration-300
-  ease-in-out;
+  @apply text-inactive duration-300 ease-in-out;
   @media (hover: hover) {
     @apply hover:text-primary dark:hover:text-white;
   }
@@ -34,4 +36,56 @@ button {
 }
 .dark-toggle {
   left: calc(100% - 20px);
+}
+// Mobile Navigation
+.mob-nav li a {
+  transition: color;
+  @apply text-white-defused duration-300 ease-in-out;
+  &.active {
+    @apply text-white;
+  }
+}
+.mob-nav::before {
+  content: "";
+  z-index: -1;
+  @apply absolute inset-0 opacity-90 rounded-xl bg-purple dark:bg-dark;
+}
+
+// MATERIAL RELATED
+@mixin xl-icon-size($size: 20px) {
+  font-size: $size !important;
+  height: $size !important;
+  width: $size !important;
+  line-height: $size !important;
+}
+
+mat-icon {
+  @include xl-icon-size(20px);
+}
+
+.mat-dialog-container {
+  @apply bg-white dark:bg-dark-lighter;
+  border-radius: 0.75rem !important;
+  padding: 0 !important;
+}
+
+.form-field {
+  .eye-toggle {
+    transform: translateY(-25%);
+  }
+  input {
+    transition-property: border-color;
+    @apply w-full bg-light p-4 rounded-xl mt-2
+    dark:bg-dark border duration-300 ease-in-out border-transparent;
+  }
+  label {
+    @apply text-primary dark:text-white-defused font-medium;
+    line-height: 1;
+    font-size: 14px;
+  }
+  &.invalid {
+    input {
+      @apply border-warning;
+    }
+  }
 }
