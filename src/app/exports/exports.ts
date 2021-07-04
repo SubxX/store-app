@@ -17,6 +17,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../../environments/environment';
+import { DarkmodeTogglerComponent } from '../common/darkmode-toggler/darkmode-toggler.component';
 
 // COMPONENT IMPORTS
 export const componentImports = [
@@ -30,7 +31,8 @@ export const componentImports = [
   MobileNavComponent,
   MenuComponent,
   ProfileComponent,
-  AuthenticationPopupComponent
+  AuthenticationPopupComponent,
+  DarkmodeTogglerComponent
 ]
 
 // MATERIAL IMPORTS

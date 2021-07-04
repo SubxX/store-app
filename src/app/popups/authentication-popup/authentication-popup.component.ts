@@ -1,6 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { authPopupAnimation } from '../../exports/animations';
+import { Store } from '@ngxs/store';
+import { SetDarkmode } from 'src/app/state/actions/userActions';
+import { SetUser } from 'src/app/state/actions/userActions';
+import { take } from 'rxjs/operators';
+import { User } from 'src/app/state/models/interfaces';
 
 @Component({
   selector: 'app-authentication-popup',
@@ -9,16 +14,11 @@ import { authPopupAnimation } from '../../exports/animations';
   animations: [authPopupAnimation]
 })
 export class AuthenticationPopupComponent implements OnInit {
-  formShown = 3;
+  formShown = 1;
   emailPattern = '[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}';
-  signUpForm = this.fb.group({
-    name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-    password: ['', [Validators.required]]
-  });
   signInForm = this.fb.group({
-    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-    password: ['', [Validators.required]]
+    email: ['subhambhattacharya700@gmail.com', [Validators.required, Validators.pattern(this.emailPattern)]],
+    password: ['Tomrider1', [Validators.required]]
   });
   triggerData = {
     value: 0,
@@ -26,28 +26,36 @@ export class AuthenticationPopupComponent implements OnInit {
   }
   @ViewChild('mainholder') mainHolder!: ElementRef;
 
-
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private store: Store
+  ) { }
 
   ngOnInit(): void {
   }
 
-  handleSignup(e: any): void {
-    e.preventDefault();
-    if (this.signUpForm.invalid) {
-      this.signUpForm.markAllAsTouched();
-      return;
-    }
-    console.log(this.signUpForm.value);
-  }
-
   handleSignin(e: any): void {
     e.preventDefault();
+    this.changeState(3);
     if (this.signInForm.invalid) {
       this.signInForm.markAllAsTouched();
       return;
     }
-    console.log(this.signInForm.value);
+    const data = {
+      ...this.signInForm.value,
+      uid: 'test',
+      name: 'Subham Bhattacharya',
+      photoURL: ''
+    }
+    this.setUser(data);
+  }
+
+  setUser(payload: User): void {
+    this.store.dispatch(new SetUser(payload));
+  }
+
+  changeDarkMode(): void {
+    this.store.dispatch(new SetDarkmode(true));
   }
 
   getControlError(formGroup: FormGroup, controlname: string): boolean | undefined {
@@ -55,7 +63,9 @@ export class AuthenticationPopupComponent implements OnInit {
     return ctrl?.touched && ctrl.errors !== null;
   }
 
-  togglePasswordVisibility(io: HTMLElement) {
+  togglePasswordVisibility(io: HTMLElement, e: any) {
+    e.preventDefault();
+    e.stopPropagation();
     const current = this.getInputType(io);
     io.setAttribute('type', current === 'password' ? 'text' : 'password');
   }
@@ -65,8 +75,7 @@ export class AuthenticationPopupComponent implements OnInit {
   }
 
   getTitle(): any {
-    if (this.formShown === 1 || this.formShown === 3) return 'signup';
-    if (this.formShown === 2) return 'signin';
+    return this.formShown === 2 ? 'signin' : 'signup';
   }
 
   changeState(state: number): void {
@@ -79,3 +88,9 @@ export class AuthenticationPopupComponent implements OnInit {
   }
 
 }
+
+// this.store.select(state => state.user.darkMode)
+// .pipe(take(1))
+// .subscribe(data => {
+//   console.log(data);
+// });

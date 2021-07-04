@@ -7,46 +7,7 @@
 
   <div class="relative" [@slideAnim]="triggerData" #mainholder>
 
-    <form (submit)="handleSignup($event)" id="signup-form" *ngIf="formShown==1" [formGroup]="signUpForm">
-
-      <div class="form-field" [class.invalid]="getControlError(signUpForm,'name')">
-        <label>Name</label>
-        <div class="relative">
-          <input type="text" placeholder="Enter fullname" formControlName="name" />
-        </div>
-      </div>
-
-      <div class="form-field mt-2" [class.invalid]="getControlError(signUpForm,'email')">
-        <label>Email</label>
-        <div class="relative">
-          <input type="text" placeholder="Enter email address" formControlName="email" />
-        </div>
-      </div>
-
-      <div class="form-field mt-2" [class.invalid]="getControlError(signUpForm,'password')">
-        <label>Password</label>
-        <div class="relative">
-          <input type="password" placeholder="Enter password" formControlName="password" #passio />
-          <button class="eye-toggle absolute top-2/4 right-4 h-5 w-5" (click)="togglePasswordVisibility(passio)">
-            <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
-              *ngIf="getInputType(passio)==='password'">visibility</mat-icon>
-            <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
-              *ngIf="getInputType(passio)==='text'">visibility_off</mat-icon>
-          </button>
-        </div>
-      </div>
-
-      <button class="w-full rounded-xl mt-5
-    py-3 font-medium bg-blue text-white
-    dark:bg-purple">SIGNUP</button>
-
-      <small class="block mt-5 text-inactive text-sm">Have an account?
-        <a class="primary-text underline cursor-pointer" (click)="changeState(2)">Signin</a>
-      </small>
-
-    </form>
-
-    <form (submit)="handleSignin($event)" id="signin-form" *ngIf="formShown==2" [formGroup]="signInForm">
+    <form (submit)="handleSignin($event)" id="signin-form" *ngIf="formShown==1" [formGroup]="signInForm">
 
       <div class="form-field" [class.invalid]="getControlError(signInForm,'email')">
         <label>Email</label>
@@ -59,7 +20,8 @@
         <label>Password</label>
         <div class="relative">
           <input type="password" placeholder="Enter password" formControlName="password" #passiologin />
-          <button class="eye-toggle absolute top-2/4 right-4 h-5 w-5" (click)="togglePasswordVisibility(passiologin)">
+          <button class="eye-toggle absolute top-2/4 right-4 h-5 w-5"
+            (click)="togglePasswordVisibility(passiologin,$event)">
             <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
               *ngIf="getInputType(passiologin)==='password'">visibility</mat-icon>
             <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
@@ -72,18 +34,55 @@
     py-3 font-medium bg-blue text-white
     dark:bg-purple">SIGNIN</button>
 
-      <small class="block mt-5 text-inactive text-sm">Dont have an account?
-        <a class="primary-text underline cursor-pointer" (click)="changeState(1)">Create</a>
-      </small>
-
     </form>
 
-    <div class="test" *ngIf="formShown==3">
-      <p class="text-xl font-medium">Verify your email</p>
-      <p class="my-5 text-sm">Hi subham! use the link that we sent to your
-        email to verify your email address and start using
-        this store!</p>
-      <button class="btn p-3 w-full rounded-xl font-medium" (click)="changeState(2)">RESEND</button>
+    <div class="text-center" *ngIf="formShown==2">
+      <svg class="w-14 h-14 mx-auto mt-8 mb-2" aria-label="success" viewBox="0 0 24 24" fill="currentColor">
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path
+          d="M16.99 5l.63 1.37 1.37.63-1.37.63L16.99 9l-.63-1.37L14.99 7l1.37-.63.63-1.37M11 6.13V4h2c.57 0 1.1.17 1.55.45l1.43-1.43A4.899 4.899 0 0013 2H7.5v2H9v2.14A5.007 5.007 0 005.26 9.5h3.98L15 11.65v-.62a5 5 0 00-4-4.9zM1 22h4V11H1v11zm19-5h-7l-2.09-.73.33-.94L13 16h2.82c.65 0 1.18-.53 1.18-1.18 0-.49-.31-.93-.77-1.11L8.97 11H7v9.02L14 22l8-3c-.01-1.1-.89-2-2-2zm0-3c1.1 0 2-.9 2-2s-2-4-2-4-2 2.9-2 4 .9 2 2 2z">
+        </path>
+      </svg>
+      <p class="text-xl font-medium">Account created!</p>
+      <p class="mb-5 mt-3 text-sm">Congratulations! you just created an account.
+        before loggin in dont forget to wash your hands.</p>
+      <button class="btn p-3 w-full rounded-xl font-medium" (click)="changeState(4)">login</button>
+    </div>
+
+    <div class="text-center" *ngIf="formShown==3">
+      <p class="text-xl font-medium">Dark mode</p>
+      <p class="mb-5 mt-3 text-sm">Just letting you know that we have dark mode. You should give it a try! Maybe you
+        like it more.</p>
+
+      <ul class="text-left mb-5">
+        <li class="flex pb-4 border-b border-light dark:border-dark">
+          <mat-icon aria-hidden="false" aria-label="visibility" [inline]="true">visibility</mat-icon>
+          <div class="flex-grow pl-4">
+            <p class="text-sm font-medium">Eye relif</p>
+            <p class="mt-1 text-sm">Give your eyes a little rest. By reducing the brightness with dark mode
+              you wont be giving your eyes shock in morning.</p>
+          </div>
+        </li>
+
+        <li class="flex py-4 border-b border-light dark:border-dark">
+          <mat-icon aria-hidden="false" aria-label="enviroment" [inline]="true">spa</mat-icon>
+          <div class="flex-grow pl-4">
+            <p class="text-sm font-medium">Enviroment</p>
+            <p class="mt-1 text-sm">Working in dark enviroment? Change the mode depending in which place you are at the
+              moment</p>
+          </div>
+        </li>
+
+        <li class="flex pt-4">
+          <mat-icon aria-hidden="false" aria-label="battery" [inline]="true">battery_charging_full</mat-icon>
+          <div class="flex-grow pl-4">
+            <p class="text-sm font-medium">Battery</p>
+            <p class="mt-1 text-sm">If you want to save your battery, dark mode the the way to go! </p>
+          </div>
+        </li>
+      </ul>
+
+      <button class="btn p-3 w-full rounded-xl font-medium" (click)="changeDarkMode()">Try dark mode</button>
     </div>
 
   </div>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationPopupComponent } from '../popups/authentication-popup/authentication-popup.component';
+import { SetDarkmode } from '../state/actions/userActions';
+import { Store } from '@ngxs/store';
 
 @Injectable({
   providedIn: 'root'
@@ -8,18 +10,10 @@ import { AuthenticationPopupComponent } from '../popups/authentication-popup/aut
 export class MainService {
   darkMode: boolean = false;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private store: Store) { }
 
-  toggleDarkMode(): void {
-    this.darkMode ? localStorage.removeItem('theme') : localStorage.setItem('theme', 'dark');
-    this.changeTheme(!this.darkMode);
-  }
-
-  changeTheme(isDark: boolean): void {
-    this.darkMode = isDark;
-    this.darkMode ?
-      document.documentElement.classList.add('dark') :
-      document.documentElement.classList.remove('dark');
+  setTheme(isDark: boolean): void {
+    this.store.dispatch(new SetDarkmode(isDark));
   }
 
   openModal(component: any, options: Object): any {

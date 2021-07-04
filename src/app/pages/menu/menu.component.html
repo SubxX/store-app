@@ -32,13 +32,7 @@
       <a class="flex rounded-lg items-center py-3 primary-text">
         <mat-icon aria-hidden="false" aria-label="Light mode icon" [inline]="true">light_mode</mat-icon>
         <span class="text-sm pl-2 font-medium flex-grow">Dark Mode</span>
-
-        <button class="w-11 h-6 rounded-full relative focus:outline-none btn cursor-pointer" (click)="toggleDarkMode()">
-          <span class="w-4 h-4 bg-dark block dark:bg-purple
-          rounded-full absolute top-2/4 transform -translate-y-2/4 left-1 darkmode-state"
-            [class.dark-toggle]="isDark"></span>
-        </button>
-
+        <app-darkmode-toggler></app-darkmode-toggler>
       </a>
     </li>
 

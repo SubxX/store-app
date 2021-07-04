@@ -7,6 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { componentImports, materialImports, firebaseImports } from './exports/exports';
 
+import { NgxsModule } from '@ngxs/store';
+import { UserState } from './state/state/userState';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -19,7 +25,11 @@ import { componentImports, materialImports, firebaseImports } from './exports/ex
     BrowserAnimationsModule,
     ReactiveFormsModule,
     materialImports,
-    firebaseImports
+    firebaseImports,
+
+    NgxsModule.forRoot([UserState], { developmentMode: !environment.production }),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
