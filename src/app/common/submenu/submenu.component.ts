@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, HostListener } from '@angular/core';
+import { AuthService } from 'src/app/services/authentication/auth.service';
 
 @Component({
   selector: 'app-submenu',
@@ -7,14 +8,23 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class SubmenuComponent implements OnInit {
   @Output() closeMenu = new EventEmitter<boolean>();
+  @HostListener('window:click', ['$event'])
+  closePopup() {
+    console.log('test');
+    this.closeMenuHandler();
+  }
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
   closeMenuHandler(): void {
     this.closeMenu.emit();
+  }
+
+  logoutUser(): void {
+    this.auth.logOutUser();
   }
 
 }

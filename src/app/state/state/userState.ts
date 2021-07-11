@@ -4,18 +4,19 @@ import { SetUser, SetDarkmode } from '../actions/userActions';
 import { Injectable } from '@angular/core';
 
 export class UserStateModel {
-  user!: User;
+  userInfo!: User;
   darkMode!: boolean;
 }
 
 @State<UserStateModel>({
   name: 'user',
   defaults: {
-    user: {
+    userInfo: {
       uid: '',
       name: '',
       email: '',
-      photoURL: ''
+      photoURL: '',
+      authenticated: false
     },
     darkMode: false
   }
@@ -30,9 +31,9 @@ export class UserState {
 
   @Action(SetUser)
   updateUser({ getState, patchState }: StateContext<UserStateModel>, { payload }: SetUser) {
-    const state = getState().user;
+    const state = getState().userInfo;
     patchState({
-      user: { ...state, ...payload }
+      userInfo: { ...state, ...payload }
     })
   }
 

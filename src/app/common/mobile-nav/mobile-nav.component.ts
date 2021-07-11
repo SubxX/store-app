@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { mobNavAnimation } from '../../exports/animations';
+import { Store } from '@ngxs/store';
+import { User } from 'src/app/state/models/interfaces';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-mobile-nav',
@@ -8,8 +11,11 @@ import { mobNavAnimation } from '../../exports/animations';
   animations: [mobNavAnimation]
 })
 export class MobileNavComponent implements OnInit {
-  isLogged = false;
-  constructor() { }
+  userData: Observable<User>;
+
+  constructor(private store: Store) {
+    this.userData = this.store.select(state => state.user.userInfo);
+  }
 
   ngOnInit(): void {
   }

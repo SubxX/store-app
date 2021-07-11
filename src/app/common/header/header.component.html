@@ -33,20 +33,20 @@
 
     </ul>
 
-    <!-- <button class="btn px-4 py-2 rounded-xl focus:outline-none flex items-center justify-center"
-      (click)="openAuthPopup()">
+    <button class="btn px-4 py-2 rounded-xl focus:outline-none flex items-center justify-center"
+      (click)="openAuthPopup()" *ngIf="!(userData | async)?.authenticated">
       <mat-icon aria-hidden="false" aria-label="login icon" [inline]="true">login</mat-icon>
       <span class="text-base pl-2">Login</span>
-    </button> -->
+    </button>
 
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center" *ngIf="(userData | async)?.authenticated">
 
       <div class="wallet-balance flex items-center pl-4 font-medium px-4 py-2 rounded-lg flex-none btn">
         <mat-icon aria-hidden="false" aria-label="account balance icon" [inline]="true">account_balance</mat-icon>
         <span class="pl-2 text-sm">20023</span>
       </div>
 
-      <div class="relative ml-5 hidden md:block select-none">
+      <div class="relative ml-5 hidden md:block select-none" (click)="$event.stopPropagation()">
 
         <div (click)="subMenuOpen=true;"
           class="flex flex-none profile-menu items-center justify-center cursor-pointer primary-text">
@@ -59,8 +59,6 @@
         <app-submenu class="absolute right-0 top-12 z-20" [@openClose] *ngIf="subMenuOpen"
           (closeMenu)="subMenuOpen=false;">
         </app-submenu>
-
-        <div *ngIf="subMenuOpen" (click)="subMenuOpen=false;" class="overlay fixed top-0 left-0 w-full h-full"></div>
 
       </div>
 

@@ -2,10 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { authPopupAnimation } from '../../exports/animations';
 import { Store } from '@ngxs/store';
-import { SetDarkmode } from 'src/app/state/actions/userActions';
-import { SetUser } from 'src/app/state/actions/userActions';
-import { take } from 'rxjs/operators';
-import { User } from 'src/app/state/models/interfaces';
+import { AuthService } from 'src/app/services/authentication/auth.service';
+import { first } from 'rxjs/operators';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-authentication-popup',
@@ -17,8 +17,8 @@ export class AuthenticationPopupComponent implements OnInit {
   formShown = 1;
   emailPattern = '[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}';
   signInForm = this.fb.group({
-    email: ['subhambhattacharya700@gmail.com', [Validators.required, Validators.pattern(this.emailPattern)]],
-    password: ['Tomrider1', [Validators.required]]
+    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+    password: ['', [Validators.required]]
   });
   triggerData = {
     value: 0,
@@ -28,35 +28,28 @@ export class AuthenticationPopupComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store
+    private store: Store,
+    private auth: AuthService,
+    private dialogRef: MatDialogRef<AuthenticationPopupComponent>,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
   }
 
-  handleSignin(e: any): void {
+  async handleSignin(e: any): Promise<any> {
     e.preventDefault();
-    this.changeState(3);
     if (this.signInForm.invalid) {
       this.signInForm.markAllAsTouched();
       return;
     }
-    const data = {
-      ...this.signInForm.value,
-      uid: 'test',
-      name: 'Subham Bhattacharya',
-      photoURL: ''
-    }
-    this.setUser(data);
+    const result = await this.auth.signIn(this.signInForm.value);
+    result ?
+      this.store.select(state => state.user.darkMode).pipe(first()).subscribe(dm => !dm ? this.changeState(3) : this.dialogRef.close())
+      : this.snackbar.open('Invalid credentials!', 'close', { duration: 3000 });
+
   }
 
-  setUser(payload: User): void {
-    this.store.dispatch(new SetUser(payload));
-  }
-
-  changeDarkMode(): void {
-    this.store.dispatch(new SetDarkmode(true));
-  }
 
   getControlError(formGroup: FormGroup, controlname: string): boolean | undefined {
     const ctrl: AbstractControl | null = formGroup.get(controlname);
