@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { authPopupAnimation } from '../../exports/animations';
+import { authPopupAnimation } from '../../animations/animations';
 import { Store } from '@ngxs/store';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { first } from 'rxjs/operators';

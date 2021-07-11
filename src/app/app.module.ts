@@ -6,10 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { UserModule } from './user/user.module';
-import { SharedModule } from './shared/shared.module';
+import { AdminModule } from './admin/admin.module';
 
-import { firebaseImports } from './exports/exports';
+// Firebase
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+// NGXS
 import { NgxsModule } from '@ngxs/store';
 import { UserState } from './state/state/userState';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
@@ -25,14 +29,16 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    firebaseImports,
-
     UserModule,
-    SharedModule,
+    AdminModule,
 
     NgxsModule.forRoot([UserState], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot()
+    NgxsLoggerPluginModule.forRoot(),
+
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { menuAnimation } from '../../exports/animations';
+import { menuAnimation } from '../../animations/animations';
 import { MainService } from 'src/app/services/main/main.service';
 import { Store } from '@ngxs/store';
 import { User } from 'src/app/state/models/interfaces';

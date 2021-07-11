@@ -5,7 +5,7 @@
     <ul class="flex justify-evenly items-center">
 
       <li>
-        <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['']"
+        <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/store']"
           routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <mat-icon aria-hidden="false" aria-label="store icon" [inline]="true">store</mat-icon>
           <span class="text-sm pt-1">Store</span>
@@ -13,7 +13,7 @@
       </li>
 
       <li>
-        <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/news']"
+        <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/store/news']"
           routerLinkActive="active">
           <mat-icon aria-hidden="false" aria-label="news icon" [inline]="true">article</mat-icon>
           <span class="text-sm pt-1">News</span>
@@ -28,7 +28,7 @@
       </li>
 
       <li *ngIf="(userData | async)?.authenticated" [@mobmenu]>
-        <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/menu']"
+        <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/store/menu']"
           routerLinkActive="active">
           <mat-icon aria-hidden="false" aria-label="menu icon" [inline]="true">menu</mat-icon>
           <span class="text-sm pt-1">Menu</span>

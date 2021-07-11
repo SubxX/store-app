@@ -10,7 +10,7 @@
     <ul class="items-center justify-center space-x-5 hidden sm:flex nav-menu">
 
       <li>
-        <a class="flex items-center cursor-pointer" [routerLink]="['']" routerLinkActive="active"
+        <a class="flex items-center cursor-pointer" [routerLink]="['/store']" routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}">
           <mat-icon aria-hidden="false" aria-label="store icon" [inline]="true">store</mat-icon>
           <span class="text-base pl-2">Store</span>
@@ -18,7 +18,7 @@
       </li>
 
       <li>
-        <a class="flex items-center cursor-pointer" [routerLink]="['/news']" routerLinkActive="active">
+        <a class="flex items-center cursor-pointer" [routerLink]="['/store/news']" routerLinkActive="active">
           <mat-icon aria-hidden="false" aria-label="news icon" [inline]="true">article</mat-icon>
           <span class="text-base pl-2">News</span>
         </a>
