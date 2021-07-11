@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { componentImports, materialImports, firebaseImports } from './exports/exports';
+
+import { UserModule } from './user/user.module';
+import { SharedModule } from './shared/shared.module';
+
+import { firebaseImports } from './exports/exports';
 
 import { NgxsModule } from '@ngxs/store';
 import { UserState } from './state/state/userState';
@@ -16,16 +19,16 @@ import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    componentImports
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    materialImports,
     firebaseImports,
+
+    UserModule,
+    SharedModule,
 
     NgxsModule.forRoot([UserState], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),

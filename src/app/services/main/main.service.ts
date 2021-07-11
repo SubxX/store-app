@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthenticationPopupComponent } from '../../popups/authentication-popup/authentication-popup.component';
+import { AuthenticationPopupComponent } from '../../shared/authentication-popup/authentication-popup.component';
 import { SetDarkmode } from '../../state/actions/userActions';
 import { Store } from '@ngxs/store';
 
