@@ -10,7 +10,7 @@
     <ul class="items-center justify-center space-x-5 hidden sm:flex nav-menu">
 
       <li>
-        <a class="flex items-center cursor-pointer" [routerLink]="['/store']" routerLinkActive="active"
+        <a class="flex items-center cursor-pointer" [routerLink]="['/']" routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}">
           <mat-icon aria-hidden="false" aria-label="store icon" [inline]="true">store</mat-icon>
           <span class="text-base pl-2">Store</span>
@@ -18,7 +18,7 @@
       </li>
 
       <li>
-        <a class="flex items-center cursor-pointer" [routerLink]="['/store/news']" routerLinkActive="active">
+        <a class="flex items-center cursor-pointer" [routerLink]="['/news']" routerLinkActive="active">
           <mat-icon aria-hidden="false" aria-label="news icon" [inline]="true">article</mat-icon>
           <span class="text-base pl-2">News</span>
         </a>
@@ -34,12 +34,12 @@
     </ul>
 
     <button class="btn px-4 py-2 rounded-xl focus:outline-none flex items-center justify-center"
-      (click)="openAuthPopup()" *ngIf="!(userData | async)?.authenticated">
+      (click)="openAuthPopup()" *ngIf="!(userData | async)?.id">
       <mat-icon aria-hidden="false" aria-label="login icon" [inline]="true">login</mat-icon>
       <span class="text-base pl-2">Login</span>
     </button>
 
-    <div class="flex items-center justify-center" *ngIf="(userData | async)?.authenticated">
+    <div class="flex items-center justify-center" *ngIf="(userData | async)?.id">
 
       <div class="wallet-balance flex items-center pl-4 font-medium px-4 py-2 rounded-lg flex-none btn">
         <mat-icon aria-hidden="false" aria-label="account balance icon" [inline]="true">account_balance</mat-icon>

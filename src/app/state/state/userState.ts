@@ -12,11 +12,11 @@ export class UserStateModel {
   name: 'user',
   defaults: {
     userInfo: {
-      uid: '',
+      id: '',
       name: '',
+      employee_code: '',
       email: '',
-      photoURL: '',
-      authenticated: false
+      photoURL: ''
     },
     darkMode: false
   }

@@ -14,12 +14,19 @@
         <div class="relative">
           <input type="text" placeholder="Enter email address" formControlName="email" />
         </div>
+        <ng-container [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{ validation: 'required', message: 'Email is required', control: signInForm.get('email') }">
+        </ng-container>
+        <ng-container [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{ validation: 'pattern', message: 'Enter a valid email', control: signInForm.get('email') }">
+        </ng-container>
       </div>
 
       <div class="form-field mt-2" [class.invalid]="getControlError(signInForm,'password')">
         <label>Password</label>
         <div class="relative">
-          <input type="password" placeholder="Enter password" formControlName="password" #passiologin />
+          <input type="password" placeholder="Enter password" formControlName="password" #passiologin
+            autocomplete="no" />
           <a class="eye-toggle absolute top-2/4 right-4 h-5 w-5 cursor-pointer" tab-index="1"
             (click)="togglePasswordVisibility(passiologin,$event)">
             <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
@@ -30,10 +37,80 @@
         </div>
       </div>
 
-      <button class="w-full rounded-xl mt-5
-    py-3 font-medium bg-blue text-white
-    dark:bg-purple">SIGNIN</button>
+      <button class="auth-form-btn" [disabled]="isLoading || signInForm.invalid">
+        <span class="pr-2 align-middle">SIGNIN</span>
+        <i class="loader" *ngIf="isLoading"></i>
+      </button>
 
+      <p class="text-xs text-center primary-text">Dont have an account ?
+        <a class="font-medium underline cursor-pointer" tab-index="1" (click)="changeState(2)">Signup</a>
+      </p>
+    </form>
+
+    <form (submit)="handleSignup($event)" id="signin-form" *ngIf="formShown==2" [formGroup]="signUpForm">
+
+      <div class="form-field" [class.invalid]="getControlError(signUpForm,'name')">
+        <label>Name</label>
+        <div class="relative">
+          <input type="text" placeholder="Enter full name" formControlName="name" autocomplete="no" />
+        </div>
+        <ng-container [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{ validation: 'required', message: 'Name is required', control: signUpForm.get('name') }">
+        </ng-container>
+      </div>
+
+      <div class="form-field mt-2" [class.invalid]="getControlError(signUpForm,'employee_code')">
+        <label>Employee code</label>
+        <div class="relative">
+          <input type="text" placeholder="Enter employee code" formControlName="employee_code" autocomplete="no" />
+        </div>
+        <ng-container [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{ validation: 'required', message: 'Employee code is required', control: signUpForm.get('employee_code') }">
+        </ng-container>
+      </div>
+
+      <div class="form-field mt-2" [class.invalid]="getControlError(signUpForm,'email')">
+        <label>Email</label>
+        <div class="relative">
+          <input type="text" placeholder="Enter email address" formControlName="email" />
+        </div>
+        <ng-container [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{ validation: 'required', message: 'Email is required', control: signUpForm.get('email') }">
+        </ng-container>
+        <ng-container [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{ validation: 'pattern', message: 'Enter a valid email', control:signUpForm.get('email') }">
+        </ng-container>
+      </div>
+
+      <div class="form-field mt-2" [class.invalid]="getControlError(signUpForm,'password')">
+        <label>Password</label>
+        <div class="relative">
+          <input type="password" placeholder="Enter password" formControlName="password" autocomplete="no"
+            #passiosignup />
+          <a class="eye-toggle absolute top-2/4 right-4 h-5 w-5 cursor-pointer" tab-index="1"
+            (click)="togglePasswordVisibility(passiosignup,$event)">
+            <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
+              *ngIf="getInputType(passiosignup)==='password'">visibility</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
+              *ngIf="getInputType(passiosignup)==='text'">visibility_off</mat-icon>
+          </a>
+        </div>
+        <ng-container [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{ validation: 'required', message: 'Password is required', control: signUpForm.get('password') }">
+        </ng-container>
+        <ng-container [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{ validation: 'minlength', message: 'Password must be of 6 characters', control: signUpForm.get('password') }">
+        </ng-container>
+      </div>
+
+      <button class="auth-form-btn" [disabled]="isLoading || signUpForm.invalid">
+        <span class="pr-2 align-middle">SIGNUP</span>
+        <i class="loader" *ngIf="isLoading"></i>
+      </button>
+
+      <p class="text-xs text-center primary-text">Already have an account ?
+        <a class="font-medium underline cursor-pointer" tab-index="1" (click)="changeState(1)">Signin</a>
+      </p>
     </form>
 
     <div class="text-center" *ngIf="formShown==3">
@@ -79,3 +156,10 @@
   </div>
 
 </div>
+
+
+<ng-template #formError let-control="control" let-message="message" let-validation="validation">
+  <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+    <small class="block text-warning text-xs pt-0.5 text-right">{{ message }}</small>
+  </ng-container>
+</ng-template>

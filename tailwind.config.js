@@ -38,7 +38,8 @@ module.exports = {
       'light': '#EAEDF2',
       'dark': '#2D2D3A',
       'extra-light': '#DDE1E8',
-      'warning': '#E24444'
+      'warning': '#E24444',
+      'transparent': 'transparent'
     },
     extend: {
       boxShadow: {

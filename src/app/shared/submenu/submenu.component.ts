@@ -10,7 +10,6 @@ export class SubmenuComponent implements OnInit {
   @Output() closeMenu = new EventEmitter<boolean>();
   @HostListener('window:click', ['$event'])
   closePopup() {
-    console.log('test');
     this.closeMenuHandler();
   }
 

@@ -7,8 +7,16 @@ button {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 input,
-textarea {
+textarea,
+button {
   @apply focus:outline-none focus:ring;
+}
+button {
+  transition-property: opacity;
+  @apply duration-300 ease-in-out;
+}
+button:disabled {
+  @apply opacity-70 cursor-default pointer-events-none;
 }
 
 .primary-text {
@@ -17,6 +25,9 @@ textarea {
 
 .btn {
   @apply bg-btn-light text-primary dark:bg-btn-dark dark:text-white focus:outline-none focus:ring;
+}
+.auth-form-btn {
+  @apply w-full rounded-xl mt-5 mb-2 py-3 font-medium bg-blue text-white dark:bg-purple;
 }
 
 .nav-menu li a {
@@ -88,4 +99,8 @@ mat-icon {
       @apply border-warning;
     }
   }
+}
+
+.loader {
+  @apply w-5 h-5 border-2 border-b-transparent rounded-r-full rounded-full animate-spin inline-block align-middle;
 }

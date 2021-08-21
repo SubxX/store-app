@@ -18,6 +18,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+// Custom Pipes
+import { FormControlPipe } from '../pipes/form-control.pipe';
+
 @NgModule({
   declarations: [
     DarkmodeTogglerComponent,
@@ -27,7 +30,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     NewsCardComponent,
     ProductComponent,
     SubmenuComponent,
-    AuthenticationPopupComponent
+    AuthenticationPopupComponent,
+    FormControlPipe
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
     MatIconModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   exports: [
     DarkmodeTogglerComponent,

@@ -8,7 +8,7 @@ import { Store } from '@ngxs/store';
   providedIn: 'root'
 })
 export class MainService {
-  darkMode: boolean = false;
+  // darkMode: boolean = false;
 
   constructor(private dialog: MatDialog, private store: Store) { }
 
@@ -26,7 +26,7 @@ export class MainService {
   }
 
   openAuthenticationPopup(): void {
-    this.openModal(AuthenticationPopupComponent, { width: '350px' });
+    this.openModal(AuthenticationPopupComponent, { width: '350px', autoFocus: false });
   }
 
 }

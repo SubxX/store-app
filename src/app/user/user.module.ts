@@ -12,6 +12,8 @@ import { SharedModule } from '../shared/shared.module';
 // material Imports
 import { MatIconModule } from '@angular/material/icon';
 
+// Custom pipes
+
 @NgModule({
   declarations: [
     UserComponent,
@@ -24,7 +26,6 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     UserRoutingModule,
     SharedModule,
-
     MatIconModule
   ]
 })

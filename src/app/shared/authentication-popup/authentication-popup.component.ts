@@ -14,12 +14,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   animations: [authPopupAnimation]
 })
 export class AuthenticationPopupComponent implements OnInit {
+  isLoading = false;
   formShown = 1;
   emailPattern = '[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}';
   signInForm = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
     password: ['', [Validators.required]]
   });
+  signUpForm = this.fb.group({
+    name: ['', [Validators.required]],
+    employee_code: ['', Validators.required],
+    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
+  });
+
   triggerData = {
     value: 0,
     params: { start: 0 }
@@ -37,19 +45,34 @@ export class AuthenticationPopupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async handleSignin(e: any): Promise<any> {
+  handleSignin(e: any): void {
     e.preventDefault();
-    if (this.signInForm.invalid) {
-      this.signInForm.markAllAsTouched();
-      return;
-    }
-    const result = await this.auth.signIn(this.signInForm.value);
-    result ?
-      this.store.select(state => state.user.darkMode).pipe(first()).subscribe(dm => !dm ? this.changeState(3) : this.dialogRef.close())
-      : this.snackbar.open('Invalid credentials!', 'close', { duration: 3000 });
+    this.isLoading = true;
+    this.auth.signin(this.signInForm.value)
+      .then(data => {
+        this.isLoading = false;
+        console.log(data);
+      }).catch(err => { this.isLoading = false; console.warn(err) })
+
+    // if (this.signInForm.invalid) {
+    //   this.signInForm.markAllAsTouched();
+    //   return;
+    // }
+    // const result = await this.auth.signIn(this.signInForm.value);
+    // result ?
+    //   this.store.select(state => state.user.darkMode).pipe(first()).subscribe(dm => !dm ? this.changeState(3) : this.dialogRef.close())
+    //   : this.snackbar.open('Invalid credentials!', 'close', { duration: 3000 });
 
   }
 
+  handleSignup(e: any): void {
+    e.preventDefault();
+    this.isLoading = true;
+    this.auth.signup(this.signUpForm.value).then(data => {
+      this.isLoading = false;
+      this.changeState(3);
+    }).catch(err => { this.isLoading = false; console.warn(err) });
+  }
 
   getControlError(formGroup: FormGroup, controlname: string): boolean | undefined {
     const ctrl: AbstractControl | null = formGroup.get(controlname);
