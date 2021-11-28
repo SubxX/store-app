@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { MainService } from './services/main/main.service';
-import { AuthService } from './services/authentication/auth.service';
+import { MainService } from '@services/main/main.service';
+import { AuthService } from '@services/authentication/auth.service';
 import { Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { User } from './state/models/interfaces';

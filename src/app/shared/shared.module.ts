@@ -19,7 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Custom Pipes
-import { FormControlPipe } from '../pipes/form-control.pipe';
+import { FormControlPipe } from '../core/pipes/form-control.pipe';
 
 @NgModule({
   declarations: [

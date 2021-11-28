@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, HostListener } from '@angular/core';
-import { AuthService } from 'src/app/services/authentication/auth.service';
+import { AuthService } from '@services/authentication/auth.service';
 
 @Component({
   selector: 'app-submenu',

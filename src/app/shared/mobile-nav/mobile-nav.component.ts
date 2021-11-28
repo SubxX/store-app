@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { mobNavAnimation } from '../../animations/animations';
+import { mobNavAnimation } from '@animations/animations';
 import { Store } from '@ngxs/store';
 import { User } from 'src/app/state/models/interfaces';
 import { Observable } from 'rxjs';
