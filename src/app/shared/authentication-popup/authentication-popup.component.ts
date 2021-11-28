@@ -37,7 +37,6 @@ export class AuthenticationPopupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store,
-    private auth: AuthService,
     private dialogRef: MatDialogRef<AuthenticationPopupComponent>,
     private snackbar: MatSnackBar
   ) { }
@@ -48,17 +47,16 @@ export class AuthenticationPopupComponent implements OnInit {
   handleSignin(e: any): void {
     e.preventDefault();
     this.isLoading = true;
-    this.auth.signin(this.signInForm.value)
-      .then(data => {
-        this.isLoading = false;
-        console.log(data);
-      }).catch(err => { this.isLoading = false; console.warn(err) })
+    setTimeout(() => {
+      this.isLoading = false;
+      this.changeState(3);
+    }, 2000)
 
     // if (this.signInForm.invalid) {
     //   this.signInForm.markAllAsTouched();
     //   return;
     // }
-    // const result = await this.auth.signIn(this.signInForm.value);
+    // signin(this.signInForm.value)
     // result ?
     //   this.store.select(state => state.user.darkMode).pipe(first()).subscribe(dm => !dm ? this.changeState(3) : this.dialogRef.close())
     //   : this.snackbar.open('Invalid credentials!', 'close', { duration: 3000 });
@@ -68,10 +66,10 @@ export class AuthenticationPopupComponent implements OnInit {
   handleSignup(e: any): void {
     e.preventDefault();
     this.isLoading = true;
-    this.auth.signup(this.signUpForm.value).then(data => {
+    setTimeout(() => {
       this.isLoading = false;
       this.changeState(3);
-    }).catch(err => { this.isLoading = false; console.warn(err) });
+    }, 2000)
   }
 
   getControlError(formGroup: FormGroup, controlname: string): boolean | undefined {

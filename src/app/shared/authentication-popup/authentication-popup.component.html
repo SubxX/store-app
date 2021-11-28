@@ -12,7 +12,7 @@
       <div class="form-field" [class.invalid]="getControlError(signInForm,'email')">
         <label>Email</label>
         <div class="relative">
-          <input type="text" placeholder="Enter email address" formControlName="email" />
+          <input type="email" placeholder="Enter email address" formControlName="email" />
         </div>
         <ng-container [ngTemplateOutlet]="formError"
           [ngTemplateOutletContext]="{ validation: 'required', message: 'Email is required', control: signInForm.get('email') }">
@@ -25,8 +25,7 @@
       <div class="form-field mt-2" [class.invalid]="getControlError(signInForm,'password')">
         <label>Password</label>
         <div class="relative">
-          <input type="password" placeholder="Enter password" formControlName="password" #passiologin
-            autocomplete="no" />
+          <input type="password" placeholder="Enter password" formControlName="password" #passiologin />
           <a class="eye-toggle absolute top-2/4 right-4 h-5 w-5 cursor-pointer" tab-index="1"
             (click)="togglePasswordVisibility(passiologin,$event)">
             <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
@@ -52,7 +51,7 @@
       <div class="form-field" [class.invalid]="getControlError(signUpForm,'name')">
         <label>Name</label>
         <div class="relative">
-          <input type="text" placeholder="Enter full name" formControlName="name" autocomplete="no" />
+          <input type="text" placeholder="Enter full name" formControlName="name" />
         </div>
         <ng-container [ngTemplateOutlet]="formError"
           [ngTemplateOutletContext]="{ validation: 'required', message: 'Name is required', control: signUpForm.get('name') }">
@@ -72,7 +71,7 @@
       <div class="form-field mt-2" [class.invalid]="getControlError(signUpForm,'email')">
         <label>Email</label>
         <div class="relative">
-          <input type="text" placeholder="Enter email address" formControlName="email" />
+          <input type="email" placeholder="Enter email address" formControlName="email" />
         </div>
         <ng-container [ngTemplateOutlet]="formError"
           [ngTemplateOutletContext]="{ validation: 'required', message: 'Email is required', control: signUpForm.get('email') }">
@@ -85,8 +84,7 @@
       <div class="form-field mt-2" [class.invalid]="getControlError(signUpForm,'password')">
         <label>Password</label>
         <div class="relative">
-          <input type="password" placeholder="Enter password" formControlName="password" autocomplete="no"
-            #passiosignup />
+          <input type="password" placeholder="Enter password" formControlName="password" #passiosignup />
           <a class="eye-toggle absolute top-2/4 right-4 h-5 w-5 cursor-pointer" tab-index="1"
             (click)="togglePasswordVisibility(passiosignup,$event)">
             <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"

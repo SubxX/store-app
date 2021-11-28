@@ -15,10 +15,6 @@ import { UserState } from './state/state/userState';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
-// Firebase
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -34,10 +30,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     NgxsModule.forRoot([UserState], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
-
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

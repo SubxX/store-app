@@ -17,21 +17,12 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private main: MainService,
-    private auth: AuthService,
     private animBuilder: AnimationBuilder
-  ) {
-    this.auth.authState
-      .pipe(takeUntil(this.destroy), switchMap(data => this.auth.getUserFromFirebase(data?.uid)))
-      .subscribe((user: User | null) => {
-        user ? this.auth.setUserData(user) : console.log('no user');
-        this.hidePreLoader();
-      });
-    // const user: any = localStorage.getItem('user');
-    // if (user) this.auth.setUserData(JSON.parse(user));
-  }
+  ) { }
 
   ngAfterViewInit() {
     this.main.setTheme(localStorage.theme ? true : false);
+    this.hidePreLoader();
   }
 
   hidePreLoader() {
