@@ -6,7 +6,8 @@ import { AuthService } from '@services/authentication/auth.service';
 import { first } from 'rxjs/operators';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { BehaviorSubject, Subject } from 'rxjs';
+import { emailPattern } from 'src/app/core/validation/email.schema';
 @Component({
   selector: 'app-authentication-popup',
   templateUrl: './authentication-popup.component.html',
@@ -14,17 +15,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   animations: [authPopupAnimation]
 })
 export class AuthenticationPopupComponent implements OnInit {
-  isLoading = false;
-  formShown = 1;
-  emailPattern = '[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}';
+  $loading: Subject<boolean> = new Subject<boolean>();
+  shownForm: BehaviorSubject<number> = new BehaviorSubject<number>(1);
   signInForm = this.fb.group({
-    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-    password: ['', [Validators.required]]
+    email: ['johndoe@email.com', [Validators.required, Validators.pattern(emailPattern)]],
+    password: ['password', [Validators.required]]
   });
   signUpForm = this.fb.group({
     name: ['', [Validators.required]],
     employee_code: ['', Validators.required],
-    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+    email: ['', [Validators.required, Validators.pattern(emailPattern)]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
@@ -37,6 +37,7 @@ export class AuthenticationPopupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store,
+    private auth: AuthService,
     private dialogRef: MatDialogRef<AuthenticationPopupComponent>,
     private snackbar: MatSnackBar
   ) { }
@@ -46,28 +47,27 @@ export class AuthenticationPopupComponent implements OnInit {
 
   handleSignin(e: any): void {
     e.preventDefault();
-    this.isLoading = true;
-    setTimeout(() => {
-      this.isLoading = false;
-      this.changeState(3);
-    }, 2000)
-
-    // if (this.signInForm.invalid) {
-    //   this.signInForm.markAllAsTouched();
-    //   return;
-    // }
-    // signin(this.signInForm.value)
-    // result ?
-    //   this.store.select(state => state.user.darkMode).pipe(first()).subscribe(dm => !dm ? this.changeState(3) : this.dialogRef.close())
-    //   : this.snackbar.open('Invalid credentials!', 'close', { duration: 3000 });
-
+    if (this.signInForm.invalid) {
+      this.signInForm.markAllAsTouched();
+      return;
+    }
+    this.$loading.next(true);
+    this.auth.signin(this.signInForm.value)
+      .subscribe((result: boolean) => {
+        this.$loading.next(false);
+        if (result) {
+          this.store.select(state => state.user.darkMode).pipe(first()).subscribe(dm => !dm ? this.changeState(3) : this.dialogRef.close())
+        } else {
+          this.snackbar.open('Invalid credentials!', 'close', { duration: 3000 });
+        }
+      })
   }
 
   handleSignup(e: any): void {
     e.preventDefault();
-    this.isLoading = true;
+    this.$loading.next(true);
     setTimeout(() => {
-      this.isLoading = false;
+      this.$loading.next(false);
       this.changeState(3);
     }, 2000)
   }
@@ -88,12 +88,8 @@ export class AuthenticationPopupComponent implements OnInit {
     return io.getAttribute('type');
   }
 
-  getTitle(): any {
-    return this.formShown === 2 ? 'signin' : 'signup';
-  }
-
   changeState(state: number): void {
-    this.formShown = state;
+    this.shownForm.next(state);
     const height = this.mainHolder.nativeElement.offsetHeight;
     this.triggerData = {
       value: state,
@@ -102,9 +98,3 @@ export class AuthenticationPopupComponent implements OnInit {
   }
 
 }
-
-// this.store.select(state => state.user.darkMode)
-// .pipe(take(1))
-// .subscribe(data => {
-//   console.log(data);
-// });

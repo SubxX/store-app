@@ -1,15 +1,14 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { MainService } from '@services/main/main.service';
 import { AuthService } from '@services/authentication/auth.service';
 import { Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
-import { User } from './state/models/interfaces';
 import { AnimationBuilder, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
   title = 'store-app';
@@ -17,12 +16,15 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private main: MainService,
-    private animBuilder: AnimationBuilder
-  ) { }
+    private animBuilder: AnimationBuilder,
+    private auth: AuthService
+  ) {
+    this.auth.initLoggedUser();
+  }
 
   ngAfterViewInit() {
     this.main.setTheme(localStorage.theme ? true : false);
-    this.hidePreLoader();
+    // this.hidePreLoader();
   }
 
   hidePreLoader() {

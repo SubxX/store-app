@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { SetDarkmode } from 'src/app/state/actions/userActions';
+import { SetDarkmode } from '@store/actions/userActions';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 

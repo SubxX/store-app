@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { mobNavAnimation } from '@animations/animations';
 import { Store } from '@ngxs/store';
-import { User } from 'src/app/state/models/interfaces';
+import { MainService } from '@services/main/main.service';
+import { User } from '@store/models/interfaces';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,7 +14,7 @@ import { Observable } from 'rxjs';
 export class MobileNavComponent implements OnInit {
   userData: Observable<User>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, public main: MainService) {
     this.userData = this.store.select(state => state.user.userInfo);
   }
 

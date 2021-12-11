@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { menuAnimation } from '@animations/animations';
 import { MainService } from '@services/main/main.service';
 import { Store } from '@ngxs/store';
-import { User } from 'src/app/state/models/interfaces';
-import { Observable } from 'rxjs';
+import { User } from '@store/models/interfaces';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +12,11 @@ import { Observable } from 'rxjs';
   animations: [menuAnimation],
 })
 export class HeaderComponent implements OnInit {
-  darkMode: boolean = false;
-  subMenuOpen: boolean = false;
+  subMenuOpen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   userData: Observable<User>;
 
   constructor(
-    private main: MainService,
+    public main: MainService,
     private store: Store
   ) {
     this.userData = this.store.select(state => state.user.userInfo);
@@ -27,6 +26,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openAuthPopup(): void {
+    this.subMenuOpen.next(false)
     this.main.openAuthenticationPopup();
   }
 

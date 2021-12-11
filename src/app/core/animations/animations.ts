@@ -41,5 +41,26 @@ const mobNavAnimation = trigger('mobmenu', [
   ])
 ])
 
+const sidebarAnimation = trigger('sidebar', [
+  transition(':enter', [
+    style({ transform: 'translateX(100%)' }),
+    animate(`200ms ease`, style({ transform: 'translateX(0)' }))
+  ]),
+  transition(':leave', [
+    style({ transform: 'translateX(0)' }),
+    animate(`200ms ease`, style({ transform: 'translateX(100%)' }))
+  ])
+])
 
-export { authPopupAnimation, menuAnimation, mobNavAnimation }
+const fadeAnimation = trigger('fade', [
+  transition(':enter', [
+    style({ opacity: 0 }),
+    animate(`250ms ease`, style({ opacity: 1 }))
+  ]),
+  transition(':leave', [
+    style({ opacity: 1 }),
+    animate(`250ms ease`, style({ opacity: 0 }))
+  ])
+])
+
+export { authPopupAnimation, menuAnimation, mobNavAnimation, sidebarAnimation, fadeAnimation }

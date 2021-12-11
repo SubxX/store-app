@@ -1,19 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationPopupComponent } from '../../../shared/authentication-popup/authentication-popup.component';
-import { SetDarkmode } from '../../../state/actions/userActions';
+import { SetDarkmode } from '@store/actions/userActions';
 import { Store } from '@ngxs/store';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
-  // darkMode: boolean = false;
 
-  constructor(private dialog: MatDialog, private store: Store) { }
+  constructor(private dialog: MatDialog, private store: Store, @Inject(DOCUMENT) private _document: any) { }
 
   setTheme(isDark: boolean): void {
     this.store.dispatch(new SetDarkmode(isDark));
+  }
+
+  get document(): HTMLElement {
+    return this._document.documentElement
   }
 
   openModal(component: any, options: Object): any {

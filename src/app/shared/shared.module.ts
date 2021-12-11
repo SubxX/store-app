@@ -5,8 +5,6 @@ import { DarkmodeTogglerComponent } from './darkmode-toggler/darkmode-toggler.co
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MobileNavComponent } from './mobile-nav/mobile-nav.component';
-import { NewsCardComponent } from './news-card/news-card.component';
-import { ProductComponent } from './product/product.component';
 import { SubmenuComponent } from './submenu/submenu.component';
 import { AuthenticationPopupComponent } from './authentication-popup/authentication-popup.component';
 
@@ -18,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+
 // Custom Pipes
 import { FormControlPipe } from '../core/pipes/form-control.pipe';
 
@@ -27,8 +26,6 @@ import { FormControlPipe } from '../core/pipes/form-control.pipe';
     FooterComponent,
     HeaderComponent,
     MobileNavComponent,
-    NewsCardComponent,
-    ProductComponent,
     SubmenuComponent,
     AuthenticationPopupComponent,
     FormControlPipe
@@ -46,9 +43,7 @@ import { FormControlPipe } from '../core/pipes/form-control.pipe';
     DarkmodeTogglerComponent,
     FooterComponent,
     HeaderComponent,
-    MobileNavComponent,
-    NewsCardComponent,
-    ProductComponent
+    MobileNavComponent
   ]
 })
 export class SharedModule { }

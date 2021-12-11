@@ -30,6 +30,7 @@ module.exports = {
       'blue': '#1750FF',
       'white': '#fff',
       'purple': '#3f51b5',
+      'overlay': 'rgba(0,0,0,.32)'
     },
     borderColor: {
       'transparent': 'transparent',

@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { UserComponent } from './user.component';
-import { MenuComponent } from './menu/menu.component';
-import { NewsComponent } from './news/news.component';
-import { ProductsComponent } from './products/products.component';
-import { ProfileComponent } from './profile/profile.component';
+import { MenuComponent } from './pages/menu/menu.component';
+import { NewsComponent } from './pages/news/news.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
