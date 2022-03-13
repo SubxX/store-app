@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { menuAnimation } from '@animations/animations';
 import { MainService } from '@services/main/main.service';
 import { Store } from '@ngxs/store';
 import { User } from '@store/models/interfaces';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
     public main: MainService,
     private store: Store
   ) {
-    this.userData = this.store.select(state => state.user.userInfo);
+    this.userData = this.store.select(state => state.user.userInfo)
   }
 
   ngOnInit(): void {

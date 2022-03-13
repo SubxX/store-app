@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 // Custom Pipes
@@ -38,6 +39,7 @@ import { FormControlPipe } from '../core/pipes/form-control.pipe';
     MatIconModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatBadgeModule
   ],
   exports: [
     DarkmodeTogglerComponent,

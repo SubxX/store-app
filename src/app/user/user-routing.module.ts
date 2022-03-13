@@ -6,6 +6,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { NewsComponent } from './pages/news/news.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
       { path: '', component: ProductsComponent },
       { path: 'news', component: NewsComponent },
       { path: 'menu', component: MenuComponent },
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent },
+      { path: 'cart', component: CartComponent }
     ]
   }
 ];

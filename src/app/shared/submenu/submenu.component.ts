@@ -9,7 +9,8 @@ import { AuthService } from '@services/authentication/auth.service';
 export class SubmenuComponent implements OnInit {
   @Output() closeMenu = new EventEmitter<boolean>();
   @HostListener('window:click', ['$event'])
-  closePopup() {
+  closePopup(e: any) {
+    e.stopPropagation()
     this.closeMenuHandler();
   }
 

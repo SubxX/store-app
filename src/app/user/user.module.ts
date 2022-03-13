@@ -14,6 +14,8 @@ import { SharedModule } from '../shared/shared.module';
 
 // material Imports
 import { MatIconModule } from '@angular/material/icon';
+import { CartComponent } from './pages/cart/cart.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
     ProfileComponent,
     ProductComponent,
     NewsCardComponent,
+    CartComponent,
+    CartItemComponent,
   ],
   imports: [
     CommonModule,

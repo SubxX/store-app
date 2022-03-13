@@ -27,13 +27,13 @@
           <label>Password</label>
           <div class="relative">
             <input type="password" placeholder="Enter password" formControlName="password" #passiologin />
-            <a class="eye-toggle absolute top-2/4 right-4 h-5 w-5 cursor-pointer" tab-index="1"
+            <button role="button" class="eye-toggle absolute top-2/4 right-4 h-5 w-5 cursor-pointer"
               (click)="togglePasswordVisibility(passiologin,$event)">
               <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
                 *ngIf="getInputType(passiologin)==='password'">visibility</mat-icon>
               <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
                 *ngIf="getInputType(passiologin)==='text'">visibility_off</mat-icon>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -86,13 +86,13 @@
           <label>Password</label>
           <div class="relative">
             <input type="password" placeholder="Enter password" formControlName="password" #passiosignup />
-            <a class="eye-toggle absolute top-2/4 right-4 h-5 w-5 cursor-pointer" tab-index="1"
+            <button role="button" class="eye-toggle absolute top-2/4 right-4 h-5 w-5 cursor-pointer"
               (click)="togglePasswordVisibility(passiosignup,$event)">
               <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
                 *ngIf="getInputType(passiosignup)==='password'">visibility</mat-icon>
               <mat-icon aria-hidden="false" aria-label="show password icon" [inline]="true"
                 *ngIf="getInputType(passiosignup)==='text'">visibility_off</mat-icon>
-            </a>
+            </button>
           </div>
           <ng-container [ngTemplateOutlet]="formError"
             [ngTemplateOutletContext]="{ validation: 'required', message: 'Password is required', control: signUpForm.get('password') }">

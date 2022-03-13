@@ -1,4 +1,4 @@
-<div class="fixed bottom-4 left-2/4 transform -translate-x-2/4 sm:hidden px-4 w-full max-w-sm">
+<div class="fixed bottom-4 left-2/4 transform -translate-x-2/4 sm:hidden px-4 w-full">
 
   <div class="mob-nav p-2 py-3 relative overflow-hidden">
 
@@ -20,20 +20,23 @@
         </a>
       </li>
 
-      <li>
-        <a class="cursor-pointer flex items-center justify-center flex-col">
-          <mat-icon aria-hidden="false" aria-label="Awards" [inline]="true">military_tech</mat-icon>
-          <span class="text-sm pt-1">Awards</span>
-        </a>
-      </li>
+      <ng-container *ngIf="(userData | async)?.id">
+        <li [@mobmenu]>
+          <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/cart']"
+            routerLinkActive="active">
+            <mat-icon aria-hidden="false" aria-label="Cart" [inline]="true">shopping_cart</mat-icon>
+            <span class="text-sm pt-1">Cart</span>
+          </a>
+        </li>
 
-      <li *ngIf="(userData | async)?.id" [@mobmenu]>
-        <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/menu']"
-          routerLinkActive="active">
-          <mat-icon aria-hidden="false" aria-label="menu icon" [inline]="true">menu</mat-icon>
-          <span class="text-sm pt-1">Menu</span>
-        </a>
-      </li>
+        <li [@mobmenu]>
+          <a class="cursor-pointer flex items-center justify-center flex-col" [routerLink]="['/menu']"
+            routerLinkActive="active">
+            <mat-icon aria-hidden="false" aria-label="menu icon" [inline]="true">menu</mat-icon>
+            <span class="text-sm pt-1">Menu</span>
+          </a>
+        </li>
+      </ng-container>
 
     </ul>
   </div>

@@ -38,7 +38,7 @@ export class UserState {
   }
 
   @Action(SetDarkmode)
-  setDarkMode({ getState, patchState }: StateContext<UserStateModel>, { payload }: SetDarkmode) {
+  setDarkMode({ patchState }: StateContext<UserStateModel>, { payload }: SetDarkmode) {
     if (payload) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');

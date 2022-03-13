@@ -14,7 +14,7 @@ import { NgxsModule } from '@ngxs/store';
 import { UserState } from '@store/state/userState';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-
+import { ProductState } from '@store/state/productsState'
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
     UserModule,
     AdminModule,
 
-    NgxsModule.forRoot([UserState], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([UserState, ProductState], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
   ],

@@ -1,0 +1,39 @@
+<div class="container mx-auto px-4 pt-6 pb-10 primary-text">
+
+    <ng-container *ngIf="true else emptyCart">
+        <h1 class="text-2xl font-medium mb-5">Cart</h1>
+
+        <div class="space-y-2">
+            <app-cart-item></app-cart-item>
+            <app-cart-item></app-cart-item>
+            <app-cart-item></app-cart-item>
+            <app-cart-item></app-cart-item>
+        </div>
+
+        <div class="flex items-center justify-between mt-5">
+            <p class="text-2xl font-bold">Total</p>
+            <p class="pl-2 text-3xl">~ 500</p>
+        </div>
+
+        <div class="flex items-center justify-between mt-5">
+            <button class="btn py-3 rounded-xl flex items-center justify-center w-full max-w-[200px]">
+                <mat-icon aria-hidden="false" aria-label="Clear cart" [inline]="true">clear</mat-icon>
+                <span class="font-medium pl-2">Clear cart</span>
+            </button>
+            <button class="btn py-3 rounded-xl flex items-center justify-center w-full ml-5 max-w-[200px]">
+                <mat-icon aria-hidden="false" aria-label="Place order" [inline]="true">done</mat-icon>
+                <span class="font-medium pl-2">Place order</span>
+            </button>
+        </div>
+    </ng-container>
+
+</div>
+
+<ng-template #emptyCart>
+    <div class="flex items-center justify-center">
+        <div class="bg-purple p-4 rounded-full inline-flex">
+            <mat-icon aria-hidden="false" aria-label="Cart is empty" [inline]="true">shopping_cart</mat-icon>
+        </div>
+        <p class="pl-5 text-lg">Seems like you cart is empty</p>
+    </div>
+</ng-template>
